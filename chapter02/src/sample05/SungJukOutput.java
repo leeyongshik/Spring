@@ -1,19 +1,28 @@
 package sample05;
 
+import java.util.List;
 
-import java.util.ArrayList;
-
+import lombok.Setter;
+@Setter
 public class SungJukOutput implements SungJuk {
-	private ArrayList arrayList =null;;
+	private List<SungJukDTO2> list;
 	
-	public SungJukOutput(ArrayList arrayList) {
-		this.arrayList = arrayList;
-	}
+	
+
+//	public void setList(List<SungJukDTO2> list) {
+//		this.list = list;
+//	}
+
+
 
 	@Override
 	public void execute() {
 		
-		System.out.println(arrayList);
+		for(SungJukDTO2 sunkJukDTO2 : list) {
+			System.out.println(sunkJukDTO2);
+		}
+		
+		
 		
 		
 

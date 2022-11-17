@@ -1,46 +1,62 @@
 package sample05;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import lombok.Setter;
 
+
+@Setter
 public class SungJukInput implements SungJuk {
 	private SungJukDTO2 sungJukDTO2 = null;
-//	private ArrayList<Object> list;
+	private List<SungJukDTO2> list;
 	
-	public SungJukInput(SungJukDTO2 sungJukDTO2) {
-		this.sungJukDTO2 = sungJukDTO2;
-	}
-	
-//	public void List() {
-//		ArrayList<Object> list = new ArrayList<Object>();
+//	public void setList(List<SungJukDTO2> list) {
 //		this.list = list;
 //	}
+//
+//	public void setSungJukDTO2(SungJukDTO2 sungJukDTO2) {
+//		this.sungJukDTO2 = sungJukDTO2;
+//	}
+	
+	
 	@Override
 	public void execute() {
 		
-		
+		//데이터
 		Scanner s = new Scanner(System.in);
 		System.out.println();
 		System.out.print("이름 입력 : ");
-		sungJukDTO2.setName(s.next());
+		String name = s.next();
 		System.out.print("국어 입력 : ");
-		sungJukDTO2.setKor(s.nextInt());
+		int kor = s.nextInt();
 		System.out.print("영어 입력 : ");
-		sungJukDTO2.setKor(s.nextInt());
+		int eng = s.nextInt();
 		System.out.print("수학 입력 : ");
-		sungJukDTO2.setKor(s.nextInt());
-		System.out.println(sungJukDTO2.getName()+"님의 데이터를 입력 하였습니다.");
+		int math = s.nextInt();
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		int tot = kor + eng + math;
+		double avg = (double)tot/3;
 		
-		ArrayList list = (ArrayList) context.getBean("arrayList");
+		//DB
+		
+		sungJukDTO2.setName(name);
+		sungJukDTO2.setKor(kor);
+		sungJukDTO2.setEng(eng);
+		sungJukDTO2.setMath(math);
+		sungJukDTO2.setTot(tot);
+		sungJukDTO2.setAvg(avg);
+		
+		
 		list.add(sungJukDTO2);
-		System.out.println(list.get(0));
+		System.out.println(list);
 		
+		//응답
+		System.out.println(name+"님의 데이터를 입력 하였습니다.");
 
 	}
+
+
+
 
 }

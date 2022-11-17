@@ -7,9 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class HelloSpring {
 	
-	public void menu() {
+	public void menu(ApplicationContext context) {
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		SungJuk sungJuk = null;
 		
 		
@@ -31,13 +30,13 @@ public class HelloSpring {
 			if(num==1) {
 				sungJuk = (SungJuk) context.getBean("sungJukInput");
 			}
-			if(num==2) {
+			else if(num==2) {
 				sungJuk = (SungJuk) context.getBean("sungJukOutput");
 			}
-			if(num==3) {
+			else if(num==3) {
 				sungJuk = (SungJuk) context.getBean("sungJukModify");
 			}
-			if(num==4) {
+			else if(num==4) {
 				sungJuk = (SungJuk) context.getBean("sungJukDelete");
 			}
 			sungJuk.execute();
@@ -48,7 +47,8 @@ public class HelloSpring {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		HelloSpring helloSpring = (HelloSpring) context.getBean("helloSpring");
-		helloSpring.menu();
+		helloSpring.menu(context);
+		System.out.println("프로그램 종료");
 
 	}
 
