@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-*** ${name} 성적 ***<br>
-총점 : ${tot}<br>
-평균 : ${avg}
-${kor}
+*** ${sungJukDTO.name} 성적 ***<br>
+총점 : ${sungJukDTO.tot}<br>
+평균 : ${sungJukDTO.avg}<br>
 
 </body>
 </html>

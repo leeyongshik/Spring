@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="result.do" method="post">
+<form action="/chapter06_1/sungJuk/result.do" method="post">
 이름 : <input type="text" name="name"><br>
-국어 : <input type="text" name="name"><br>
-영어 : <input type="text" name="name"><br>
-수학 : <input type="text" name="name"><br>
+국어 : <input type="text" name="kor"><br>
+영어 : <input type="text" name="eng"><br>
+수학 : <input type="text" name="math"><br>
 <input type="submit" value="계산">
 </form>
 </body>

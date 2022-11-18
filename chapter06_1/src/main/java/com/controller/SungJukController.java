@@ -9,23 +9,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bean.SungJukDTO;
 
-@Controller
+//@Controller
+@RequestMapping(value = "/sungJuk")
 public class SungJukController {
 
-	@RequestMapping(value = "sungJuk/input.do", method = RequestMethod.GET,produces = "text/html; charset=UTF-8")
+	@RequestMapping(value = "/input.do", method = RequestMethod.GET,produces = "text/html; charset=UTF-8")
 	public String input() {
 		return "/sungJuk/input";
 	}
 	
-	@PostMapping(value="sungJuk/result.do",produces = "text/html; charset=UTF-8")
+	@PostMapping(value="/result.do")
 	public String result(@ModelAttribute SungJukDTO sungJukDTO, Model model) {
-		model.addAttribute("name",sungJukDTO.getName());
-		model.addAttribute("kor",sungJukDTO.getKor());
-		model.addAttribute("math",sungJukDTO.getMath());
-		model.addAttribute("eng",sungJukDTO.getEng());
-		model.addAttribute("tot",sungJukDTO.getTot());
-		model.addAttribute("avg",sungJukDTO.getAvg());
 		
-		return "sungJuk/result";
+		int tot = sungJukDTO.getKor() + sungJukDTO.getEng() + sungJukDTO.getMath();
+		double avg = tot/3.0;
+		
+		sungJukDTO.setTot(tot);
+		sungJukDTO.setAvg(avg);
+		System.out.println(tot);
+		
+		model.addAttribute("sungJukDTO",sungJukDTO);
+		
+		return "/sungJuk/result";
 	}
 }
