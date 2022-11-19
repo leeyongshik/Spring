@@ -1,5 +1,7 @@
 package user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,17 @@ public class UserDAOMybatis implements UserDAO {
 	public boolean isExistId(String id) {
 		boolean exist = sqlSession.selectOne("userSQL.isExistId", id);
 		return exist;
+	}
+
+	@Override
+	public List<UserDTO> getList() {
+		return sqlSession.selectList("userSQL.getList");
+		
+	}
+
+	@Override
+	public UserDTO getUser(String id) {
+		return sqlSession.selectOne("userSQL.getUser", id);
 	}
 
 }

@@ -1,5 +1,7 @@
 package user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,29 @@ public class UserController {
 		String result = (exise+"");
 		System.out.println(exise);
 		return result;
+	}
+	
+	@RequestMapping(value = "list")
+	public String list() {
+		return "user/list";
+	}
+	
+	@PostMapping(value = "/getList")
+	@ResponseBody // list를 JSON으로 변환
+	public List<UserDTO> getUserList(){
+		return userService.getList();
+	}
+	
+	@RequestMapping(value = "/updateFrom")
+	public String updateFrom() {
+		return "user/updateFrom";
+	}
+	
+	@PostMapping(value = "/getUser")
+	@ResponseBody
+	public UserDTO getUser(@RequestParam String id) {
+		
+		return userService.getUser(id);
 	}
 
 }
