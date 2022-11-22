@@ -40,4 +40,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUser(id);
 	}
 
+	@Override
+	public void update(UserDTO userDTO) {
+		userDAO.update(userDTO);
+		
+	}
+
 }

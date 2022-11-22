@@ -65,5 +65,17 @@ public class UserController {
 		
 		return userService.getUser(id);
 	}
+	
+	@PostMapping(value = "update")
+	@ResponseBody //리턴값이 없을때 xml로 가지 않고 돌아가도록 설정
+	public void update(@ModelAttribute UserDTO userDTO) {
+		//DB
+		userService.update(userDTO);
+	}
+	
+	@RequestMapping(value = "/deleteForm")
+	public String delete() {
+		return "user/deleteForm";
+	}
 
 }

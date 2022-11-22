@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<h1><img alt="" src="../img/222.gif" width="100" height="100" style="cursor: pointer;" onclick="location.href='../'">리스트</h1>
+<h1><img alt="" src="../img/222.gif" width="100" height="100" style="cursor: pointer;" onclick="location.href='../'">회원정보수정</h1>
 <hr>
 <table border="1">
 	<tr>
@@ -109,6 +109,26 @@ $(function () {
 $('#resetBtn').click(function () {
 	//강제 이벤트 발생
 	$('#searchBtn').trigger('click');
+});
+
+//업데이트 버튼
+$('#updateBtn').click(function () {
+	$.ajax({
+		type : 'post',
+		url : '/chapter06_SpringWebMaven/user/update',
+		data : ('#updateForm').serialize(),
+		//dataType : 'json',
+		//서버에서 받아오는 데이터 타입은 'text','html','xml','json' 형식을 지정할 수 있다.
+		// getUser 에서 id를 찾으면 제대로 JSON 으로 오지만
+		// id가 없으면 JSON 형식으로 오지 못한다.
+		//그래서 dataType 를 생략한다. (dataType를 생략하면 알아서 리턴한다)
+		success : function () {
+			alert('업데이트 하였습니다.');
+			
+		},error : function (err) {
+			console.log(err);
+		}
+	});//$.ajax
 });
 
 </script>
