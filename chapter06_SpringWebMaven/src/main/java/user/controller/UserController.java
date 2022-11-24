@@ -26,7 +26,7 @@ public class UserController {
 		return "user/writeFrom";
 	}
 	
-	@PostMapping(value = "write")
+	@PostMapping(value = "/write")
 	@ResponseBody //리턴값이 없을때 xml로 가지 않고 돌아가도록 설정
 	public void write(@ModelAttribute UserDTO userDTO) {
 		//DB
@@ -43,7 +43,7 @@ public class UserController {
 		return result;
 	}
 	
-	@RequestMapping(value = "list")
+	@RequestMapping(value = "/list")
 	public String list() {
 		return "user/list";
 	}
@@ -66,7 +66,7 @@ public class UserController {
 		return userService.getUser(id);
 	}
 	
-	@PostMapping(value = "update")
+	@PostMapping(value = "/update")
 	@ResponseBody //리턴값이 없을때 xml로 가지 않고 돌아가도록 설정
 	public void update(@ModelAttribute UserDTO userDTO) {
 		//DB
@@ -77,5 +77,7 @@ public class UserController {
 	public String delete() {
 		return "user/deleteForm";
 	}
+	
+
 
 }
