@@ -107,31 +107,54 @@ public class UserController2 {
 //		
 //	}
 	
-	//파일 업로드 한번에 여러개 
-	@PostMapping(value = "/upload")
+//	//파일 업로드 한번에 여러개 
+//	@PostMapping(value = "/upload")
+//	@ResponseBody
+//	public void upload(@RequestParam("img[]") List<MultipartFile> list, HttpSession session) {
+//		//실제폴더
+//		String filePath = session.getServletContext().getRealPath("/WEB-INF/storage");
+//		
+//		String fileName;
+//		File file;
+//		
+//		
+//		for(MultipartFile img : list) {
+//			fileName = img.getOriginalFilename();
+//			file = new File(filePath, fileName);
+//			
+//			
+//			try {
+//				//FileCopyUtils.copy(upload.getInputStream(), new FileOutputStream(file)); // 가상폴더로 복사한다
+//				img.transferTo(file);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}//복사
+//		}//if
+//		
+//		
+//	}
+	
+	
+	
+	
+	@PostMapping(value = "/upload2", produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public void upload(@RequestParam("img[]") List<MultipartFile> list, HttpSession session) {
-		//실제폴더
-		String filePath = session.getServletContext().getRealPath("/WEB-INF/storage");
+	public String upload2(@RequestParam MultipartFile img) {
+		String filePath = "/Users/leeyongshik/Desktop/JAVA/Spring/workspace/chapter06_SpringWebMaven/src/main/webapp/WEB-INF/storage";
+		String fileName = img.getOriginalFilename();
 		
-		String fileName;
-		File file;
+		File file = new File(filePath, fileName);
+		System.out.println(file);
+		try {
+			//FileCopyUtils.copy(upload.getInputStream(), new FileOutputStream(file)); // 가상폴더로 복사한다
+			img.transferTo(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//복사
 		
-		
-		for(MultipartFile img : list) {
-			fileName = img.getOriginalFilename();
-			file = new File(filePath, fileName);
-			
-			
-			try {
-				//FileCopyUtils.copy(upload.getInputStream(), new FileOutputStream(file)); // 가상폴더로 복사한다
-				img.transferTo(file);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}//복사
-		}//if
-		
-		
+		return "<img src='../storage/"+fileName+"' width='300' height='300'/>";
 	}
+	
 }
